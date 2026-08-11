@@ -30,4 +30,29 @@ document.addEventListener('DOMContentLoaded', () => {
     baRange.addEventListener('input', e => updateSlider(e.target.value));
     updateSlider(baRange.value);
   }
+
+  // subtle parallax on work-grid photos
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  let ticking = false;
+  function updateParallax() {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(img => {
+      const rect = img.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const progress = (center - vh / 2) / vh;
+      const offset = Math.max(-16, Math.min(16, progress * -16));
+      img.style.transform = `translateY(${offset}px)`;
+    });
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  if (parallaxEls.length) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+  }
 });
