@@ -31,28 +31,43 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlider(baRange.value);
   }
 
-  // subtle parallax on work-grid photos
-  const parallaxEls = document.querySelectorAll('[data-parallax]');
-  let ticking = false;
-  function updateParallax() {
-    const vh = window.innerHeight;
-    parallaxEls.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      const center = rect.top + rect.height / 2;
-      const progress = (center - vh / 2) / vh;
-      const offset = Math.max(-16, Math.min(16, progress * -16));
-      img.style.transform = `translateY(${offset}px)`;
-    });
-    ticking = false;
+  // scrollytelling sequence in "Aperçu"
+  const scrollTrack = document.getElementById('scrollTrack');
+  const slides = document.querySelectorAll('.scroll-slide');
+  const railDots = document.querySelectorAll('.rail-dot');
+  const railFill = document.getElementById('railFill');
+  const railArrow = document.getElementById('railArrow');
+  const scrollBounce = document.getElementById('scrollBounce');
+  const steps = slides.length;
+
+  function updateScrollytelling() {
+    if (!scrollTrack || !steps) return;
+    const rect = scrollTrack.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    let progress = total > 0 ? (-rect.top) / total : 0;
+    progress = Math.max(0, Math.min(1, progress));
+
+    const stepIndex = Math.min(steps - 1, Math.floor(progress * steps));
+
+    slides.forEach(el => el.classList.toggle('active', Number(el.dataset.step) === stepIndex));
+    railDots.forEach(el => el.classList.toggle('active', Number(el.dataset.step) === stepIndex));
+
+    const pct = progress * 100;
+    if (railFill) railFill.style.height = pct + '%';
+    if (railArrow) railArrow.style.top = pct + '%';
+    if (scrollBounce) scrollBounce.style.opacity = progress < 0.04 ? '1' : '0';
   }
+
+  let ticking = false;
   function onScroll() {
     if (!ticking) {
-      requestAnimationFrame(updateParallax);
+      requestAnimationFrame(() => { updateScrollytelling(); ticking = false; });
       ticking = true;
     }
   }
-  if (parallaxEls.length) {
+  if (scrollTrack) {
     window.addEventListener('scroll', onScroll, { passive: true });
-    updateParallax();
+    window.addEventListener('resize', updateScrollytelling);
+    updateScrollytelling();
   }
 });

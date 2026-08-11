@@ -176,17 +176,51 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
   color:var(--ink);max-width:480px;margin:0 auto;
 }
 
-/* work grid */
-.work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px;align-items:start;}
-.work-media{
-  overflow:hidden;border-radius:2px;
-  clip-path:inset(0 0 100% 0);transform:scale(1.18);
-  transition:clip-path 1.15s cubic-bezier(.16,1,.3,1), transform 1.4s cubic-bezier(.16,1,.3,1);
+/* scrollytelling sequence */
+.scroll-track{position:relative;height:400vh;}
+.scroll-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;}
+.scroll-inner{
+  max-width:1180px;margin:0 auto;padding:0 40px;width:100%;
+  display:flex;align-items:center;gap:56px;
 }
-.work-item.in-view .work-media{clip-path:inset(0 0 0% 0);transform:scale(1);}
-.work-media img{width:100%;height:auto;display:block;filter:saturate(1.2) contrast(1.05);will-change:transform;}
-.work-item figcaption{margin-top:12px;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
-.work-item.tall{margin-top:36px;}
+.scroll-rail{flex-shrink:0;width:150px;position:relative;height:280px;}
+.scroll-rail-line{position:absolute;left:0;top:0;width:2px;height:100%;background:var(--line);border-radius:1px;}
+.scroll-rail-fill{position:absolute;left:0;top:0;width:100%;height:0%;background:linear-gradient(180deg,var(--rust),var(--indigo));border-radius:1px;}
+.scroll-rail-arrow{
+  position:absolute;left:0;top:0;transform:translate(-50%,-50%);
+  width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:flex;align-items:center;justify-content:center;
+}
+.scroll-rail-arrow svg{width:13px;height:13px;}
+.scroll-rail-dots{position:absolute;left:24px;top:0;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
+.rail-dot{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);opacity:.45;transition:opacity .3s,color .3s;}
+.rail-dot em{font-family:'Fraunces',serif;font-style:italic;font-size:13px;}
+.rail-dot.active{opacity:1;color:var(--ink);}
+
+.scroll-frame{position:relative;flex:1;width:min(600px,74vw);height:min(66vh,600px);}
+.scroll-slide{
+  position:absolute;inset:0;opacity:0;transform:scale(.94) translateY(20px);
+  transition:opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;
+}
+.scroll-slide.active{opacity:1;transform:scale(1) translateY(0);pointer-events:auto;}
+.scroll-slide img{width:100%;height:100%;object-fit:cover;display:block;border-radius:3px;filter:saturate(1.2) contrast(1.05);}
+.scroll-caption{
+  position:absolute;left:22px;bottom:22px;right:22px;
+  background:rgba(23,20,15,.55);backdrop-filter:blur(4px);
+  padding:16px 20px;border-radius:2px;color:var(--paper);
+}
+.scroll-caption h4{color:var(--paper);margin-bottom:4px;}
+.scroll-caption p{color:rgba(247,243,236,.75);font-size:13.5px;margin:0;}
+.scroll-caption .offer-num{color:rgba(247,243,236,.6);}
+.scroll-bounce{
+  position:absolute;left:50%;bottom:-52px;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;
+  transition:opacity .4s;
+}
+.scroll-bounce svg{width:18px;height:18px;animation:bounceDown 1.6s ease-in-out infinite;}
+@keyframes bounceDown{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
 /* contact */
 .contact-section{text-align:left;}
@@ -228,11 +262,13 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
   .hero{grid-template-columns:1fr;padding:60px 24px 70px;}
   .manifesto-grid{grid-template-columns:1fr;gap:30px;}
   .process-grid{grid-template-columns:1fr 1fr;}
-  .work-grid{grid-template-columns:1fr 1fr;}
   .offer-row{grid-template-columns:40px 1fr;}
   .offer-row h3{grid-column:2;}
   .nav-links{display:none;}
   .wrap{padding:0 22px;}
   .header-inner{padding:18px 22px;}
   .contact-methods{grid-template-columns:1fr;}
+  .scroll-inner{flex-direction:column;gap:24px;padding:0 22px;}
+  .scroll-rail{display:none;}
+  .scroll-frame{width:88vw;height:56vh;}
 }

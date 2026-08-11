@@ -150,27 +150,53 @@
     </div>
   </section>
 
-  <section class="section" id="realisations" style="border-top:none;">
+  <section class="section" id="realisations" style="border-top:none;padding-bottom:0;">
     <div class="wrap">
       <p class="eyebrow reveal">Aperçu</p>
       <h2 class="reveal">Le type de travail<br>qu'on peut produire.</h2>
-      <div class="work-grid">
-        <figure class="work-item reveal">
-          <div class="work-media"><img data-parallax src="https://images.pexels.com/photos/5933/color-paint-palette-wall-painting.jpg?auto=compress&amp;cs=tinysrgb&amp;w=700&amp;h=900&amp;fit=crop" alt="Palette de couleurs pour une identité de marque" loading="lazy"></div>
-          <figcaption>Identité visuelle</figcaption>
-        </figure>
-        <figure class="work-item reveal tall" style="transition-delay:.05s">
-          <div class="work-media"><img data-parallax src="https://images.pexels.com/photos/32532135/pexels-photo-32532135.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700&amp;h=1050&amp;fit=crop" alt="Devanture de boutique avec enseigne travaillée" loading="lazy"></div>
-          <figcaption>Signalétique</figcaption>
-        </figure>
-        <figure class="work-item reveal" style="transition-delay:.1s">
-          <div class="work-media"><img data-parallax src="https://images.pexels.com/photos/3184464/pexels-photo-3184464.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700&amp;h=900&amp;fit=crop" alt="Ordinateur portable et café, travail sur un site web" loading="lazy"></div>
-          <figcaption>Site &amp; digital</figcaption>
-        </figure>
-        <figure class="work-item reveal tall" style="transition-delay:.15s">
-          <div class="work-media"><img data-parallax src="https://images.pexels.com/photos/15467761/pexels-photo-15467761.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700&amp;h=1050&amp;fit=crop" alt="Client scannant un QR code physique en boutique" loading="lazy"></div>
-          <figcaption>Support physique</figcaption>
-        </figure>
+    </div>
+
+    <div class="scroll-track" id="scrollTrack">
+      <div class="scroll-sticky">
+        <div class="scroll-inner">
+
+          <div class="scroll-rail">
+            <div class="scroll-rail-line"><div class="scroll-rail-fill" id="railFill"></div></div>
+            <div class="scroll-rail-arrow" id="railArrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+            </div>
+            <div class="scroll-rail-dots">
+              <span class="rail-dot active" data-step="0"><em>01</em>Identité</span>
+              <span class="rail-dot" data-step="1"><em>02</em>Signalétique</span>
+              <span class="rail-dot" data-step="2"><em>03</em>Digital</span>
+              <span class="rail-dot" data-step="3"><em>04</em>Physique</span>
+            </div>
+          </div>
+
+          <div class="scroll-frame">
+            <div class="scroll-slide active" data-step="0">
+              <img src="https://images.pexels.com/photos/5933/color-paint-palette-wall-painting.jpg?auto=compress&amp;cs=tinysrgb&amp;w=900&amp;h=1100&amp;fit=crop" alt="Palette de couleurs pour une identité de marque" loading="lazy">
+              <div class="scroll-caption"><span class="offer-num">01</span><h4>Identité visuelle</h4><p>Logo, palette, typographie : la base de tout ce qui suit.</p></div>
+            </div>
+            <div class="scroll-slide" data-step="1">
+              <img src="https://images.pexels.com/photos/32532135/pexels-photo-32532135.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900&amp;h=1100&amp;fit=crop" alt="Devanture de boutique avec enseigne travaillée" loading="lazy">
+              <div class="scroll-caption"><span class="offer-num">02</span><h4>Signalétique</h4><p>Enseigne et supports imprimés cohérents avec l'identité.</p></div>
+            </div>
+            <div class="scroll-slide" data-step="2">
+              <img src="https://images.pexels.com/photos/3184464/pexels-photo-3184464.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900&amp;h=1100&amp;fit=crop" alt="Ordinateur portable et café, travail sur un site web" loading="lazy">
+              <div class="scroll-caption"><span class="offer-num">03</span><h4>Site &amp; digital</h4><p>Un site pensé pour convertir un visiteur en client.</p></div>
+            </div>
+            <div class="scroll-slide" data-step="3">
+              <img src="https://images.pexels.com/photos/15467761/pexels-photo-15467761.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900&amp;h=1100&amp;fit=crop" alt="Client scannant un QR code physique en boutique" loading="lazy">
+              <div class="scroll-caption"><span class="offer-num">04</span><h4>Support physique</h4><p>Cartes NFC et QR codes qui connectent le physique au digital.</p></div>
+            </div>
+            <div class="scroll-bounce" id="scrollBounce">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 9l6 6 6-6"/></svg>
+              <span>Continuez à scroller</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
