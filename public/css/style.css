@@ -99,6 +99,7 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;}
 .logo{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-size:19px;font-weight:500;color:var(--ink);}
 .logo-mark{width:24px;height:24px;}
+.logo-studio{margin-left:4px;font-size:.82em;font-weight:400;}
 .nav-links{display:flex;gap:32px;font-size:14px;}
 .nav-links a{opacity:.7;transition:opacity .2s;}
 .nav-links a:hover{opacity:1;}
@@ -174,10 +175,34 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);padding:32px 0;}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:14px;}
+.footer-legal{display:flex;gap:18px;}
+.footer-legal a{opacity:.7;transition:opacity .2s;}
+.footer-legal a:hover{opacity:1;}
 .footer-links{display:flex;gap:18px;}
 .footer-links svg{width:18px;height:18px;opacity:.7;transition:opacity .2s;}
 .footer-links a:hover svg{opacity:1;}
+
+/* contact page */
+.contact-methods{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px;max-width:720px;}
+.contact-card{
+  border:1px solid var(--line);border-radius:2px;padding:28px 26px;
+  display:flex;flex-direction:column;gap:4px;
+  transition:transform .25s cubic-bezier(.2,.6,.2,1), border-color .25s;
+}
+.contact-card:hover{transform:translateY(-4px);border-color:var(--line-strong);}
+.contact-icon{width:28px;height:28px;margin-bottom:12px;}
+.contact-icon svg{width:100%;height:100%;}
+.contact-label{font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);}
+.contact-value{font-family:'Fraunces',serif;font-size:20px;color:var(--ink);}
+.contact-note{font-size:12.5px;color:var(--muted);margin-top:4px;}
+.contact-trust{margin-top:36px;font-size:14px;color:var(--muted);font-style:italic;}
+
+/* legal pages */
+.legal-content{max-width:680px;}
+.legal-content h1{margin-bottom:36px;}
+.legal-content h3{margin-top:34px;margin-bottom:10px;font-size:19px;}
+.legal-content p{margin-bottom:14px;font-size:15px;}
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;padding:60px 24px 70px;}
@@ -189,4 +214,5 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
   .nav-links{display:none;}
   .wrap{padding:0 22px;}
   .header-inner{padding:18px 22px;}
+  .contact-methods{grid-template-columns:1fr;}
 }
