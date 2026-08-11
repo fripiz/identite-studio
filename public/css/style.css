@@ -298,6 +298,7 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
   .nav-links a:last-child{border-bottom:none;}
   .nav-toggle{display:flex;}
   .header-inner{position:relative;}
+  .header-inner .btn-outline{display:none;}
   .hero-actions .link-underline{white-space:nowrap;}
 
   /* before/after slider: match the photo's own ratio instead of a tall fixed box */
