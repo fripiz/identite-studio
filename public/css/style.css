@@ -137,6 +137,8 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
 }
 .offer-num{font-family:'Fraunces',serif;font-style:italic;color:var(--muted);font-size:15px;}
 .offer-row p{max-width:480px;font-size:15px;}
+.offer-price{font-size:13.5px;font-weight:500;color:var(--rust);margin-top:8px;}
+.offer-price-muted{color:var(--muted);font-weight:400;font-style:italic;}
 
 /* process */
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:44px;}
@@ -245,10 +247,31 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
 .scroll-bounce svg{width:18px;height:18px;animation:bounceDown 1.6s ease-in-out infinite;}
 @keyframes bounceDown{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
+/* faq */
+.faq-list{margin-top:36px;border-top:1px solid var(--line);max-width:720px;}
+.faq-item{border-bottom:1px solid var(--line);padding:18px 0;}
+.faq-item summary{
+  font-family:'Fraunces',serif;font-size:17px;font-weight:500;cursor:pointer;
+  list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{
+  content:"+";flex-shrink:0;font-size:20px;color:var(--rust);font-family:'Inter',sans-serif;
+  transition:transform .25s;
+}
+.faq-item[open] summary::after{transform:rotate(45deg);}
+.faq-item p{margin-top:14px;font-size:14.5px;max-width:620px;}
+
 /* contact */
 .contact-section{text-align:left;}
 .contact-inner{max-width:560px;}
-.contact-inner .btn-fill{margin-top:30px;}
+.contact-inner .btn-fill{margin-top:14px;}
+.launch-offer{
+  margin-top:26px;padding:16px 20px;border:1px solid var(--line-strong);border-radius:2px;
+  background:rgba(174,70,32,.06);
+}
+.launch-offer p{font-size:14px;color:#3C382F;}
+.zone-note{margin-top:16px;font-size:13.5px;color:var(--muted);max-width:480px;}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);padding:32px 0;}
