@@ -132,12 +132,12 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
 /* offers */
 .offer-list{margin-top:44px;border-top:1px solid var(--line);}
 .offer-row{
-  display:grid;grid-template-columns:60px 200px 1fr;gap:24px;align-items:start;
+  display:grid;grid-template-columns:60px 180px minmax(0,1fr) 220px;gap:24px;align-items:baseline;
   padding:26px 0;border-bottom:1px solid var(--line);
 }
 .offer-num{font-family:'Fraunces',serif;font-style:italic;color:var(--muted);font-size:15px;}
 .offer-row p{max-width:480px;font-size:15px;}
-.offer-price{font-size:13.5px;font-weight:500;color:var(--rust);margin-top:8px;}
+.offer-price{font-size:13.5px;font-weight:500;color:var(--rust);text-align:right;white-space:nowrap;}
 .offer-price-muted{color:var(--muted);font-weight:400;font-style:italic;}
 
 /* process */
@@ -308,9 +308,10 @@ p.lede{font-size:17px;max-width:520px;color:#4A4436;}
   .hero{grid-template-columns:1fr;padding:52px 22px 60px;gap:36px;}
   .manifesto-grid{grid-template-columns:1fr;gap:30px;}
   .process-grid{grid-template-columns:1fr 1fr;gap:20px;}
-  .offer-row{grid-template-columns:40px 1fr;}
+  .offer-row{grid-template-columns:40px minmax(0,1fr);gap:8px 14px;padding:22px 0;}
   .offer-row h3{grid-column:2;}
   .offer-row p{grid-column:2;}
+  .offer-price{text-align:left;white-space:normal;margin-top:4px;}
   .wrap{padding:0 22px;}
   .header-inner{padding:16px 22px;}
   .contact-methods{grid-template-columns:1fr;}
