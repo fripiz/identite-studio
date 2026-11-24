@@ -4,6 +4,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, 'public');
+const contactHandler = require('./api/contact');
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -47,6 +48,7 @@ const server = http.createServer((req, res) => {
     res.end('Bad request');
     return;
   }
+  if (reqPath === '/api/contact') return contactHandler(req, res);
   if (reqPath === '/') reqPath = '/index.html';
 
   const filePath = path.normalize(path.join(PUBLIC_DIR, reqPath));
