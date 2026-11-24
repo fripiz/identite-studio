@@ -65,6 +65,38 @@
       </div>
 
       <p class="contact-trust reveal" style="transition-delay:.2s">Premier échange offert, sans engagement.</p>
+
+      <div class="contact-form-wrap reveal" style="transition-delay:.25s">
+        <h2 class="contact-form-title">Ou écrivez-nous directement</h2>
+        <!-- Identifiant du compte Identité Studio dans FidélityApp (bloc « contact » activé) -->
+        <form class="contact-form" id="contactForm" data-merchant-id="" novalidate>
+          <div class="form-row">
+            <label><span class="form-label">Nom<span aria-hidden="true"> *</span></span>
+              <input type="text" name="name" autocomplete="name" required maxlength="120">
+            </label>
+            <label><span class="form-label">Email<span aria-hidden="true"> *</span></span>
+              <input type="email" name="email" autocomplete="email" required maxlength="320">
+            </label>
+          </div>
+          <div class="form-row">
+            <label><span class="form-label">Téléphone <span class="form-optional">(facultatif)</span></span>
+              <input type="tel" name="phone" autocomplete="tel" maxlength="30">
+            </label>
+            <label><span class="form-label">Votre activité <span class="form-optional">(facultatif)</span></span>
+              <input type="text" name="subject" placeholder="Ex. boulangerie à Muret" maxlength="150">
+            </label>
+          </div>
+          <label><span class="form-label">Votre message<span aria-hidden="true"> *</span></span>
+            <textarea name="message" rows="6" required maxlength="5000" placeholder="Parlez-nous de votre commerce et de ce dont vous avez besoin."></textarea>
+          </label>
+          <div class="form-hp" aria-hidden="true">
+            <label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <p class="form-legal">Vos coordonnées servent uniquement à vous répondre. <a class="link-underline" href="confidentialite.html">En savoir plus</a></p>
+          <button type="submit" class="btn-fill">Envoyer le message</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
@@ -88,5 +120,37 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+  var status = document.getElementById('formStatus');
+  var button = form.querySelector('button[type="submit"]');
+  var API = 'https://fidelityapp.fr/api/public/merchant/';
+  function show(msg, ok) { status.textContent = msg; status.className = 'form-status ' + (ok ? 'is-ok' : 'is-error'); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = form.getAttribute('data-merchant-id');
+    var data = {};
+    ['name', 'email', 'phone', 'subject', 'message', 'website'].forEach(function (k) {
+      data[k] = (form.elements[k].value || '').trim();
+    });
+    if (!data.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) || data.message.length < 2) {
+      show('Merci d\'indiquer votre nom, un email valide et votre message.', false);
+      return;
+    }
+    if (!id) { show('Le formulaire n\'est pas encore actif : écrivez-nous à contactidentitestudio@gmail.com.', false); return; }
+    button.disabled = true; button.textContent = 'Envoi…';
+    fetch(API + id + '/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok, error: j.error }; }); })
+      .then(function (res) {
+        if (res.ok) { form.reset(); show('Merci, votre message est bien envoyé. On vous répond rapidement.', true); }
+        else show(res.error || 'Le message n\'a pas pu être envoyé. Écrivez-nous par email ou WhatsApp.', false);
+      })
+      .catch(function () { show('Connexion impossible. Réessayez, ou écrivez-nous par email ou WhatsApp.', false); })
+      .then(function () { button.disabled = false; button.textContent = 'Envoyer le message'; });
+  });
+})();
+</script>
 </body>
 </html>
